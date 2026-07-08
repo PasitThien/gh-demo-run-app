@@ -43,7 +43,7 @@ jobs:
           APP_VERSION: "2.34.5"
           RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: 
-          echo "This is event ${ github.event_name }"
+          echo "This is event ${{ github.event_name }}"
           echo "This job trigger by ${{ github.event_name }}"
           echo "This repository is ${{ github.repository }}"
           echo "This branch is ${{ github.ref_name }}"
