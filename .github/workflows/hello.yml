@@ -1,10 +1,12 @@
 # Workflow name
 name: Hello World
 
+# ${{}} is used for express github action variables
+
 # Determine custom environment variables for all jobs used with every jobs server runner
 # Github actions provided build-in env var but you can determine by your seld
 env:
-  PATH: /S/
+  APP_NAME: "Demo Application"
 
 # Event triggered can determined as array test1,test2
 on: 
@@ -38,13 +40,13 @@ jobs:
       - name: Echo Github Variable
         env:
           APP_VERSION: "2.34.5"
-          # APP_NAME: "gh-demo-run-app"
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: 
           echo "This job trigger by ${{ github.event_name }}"
           echo "This repository is ${{ github.repository }}"
           echo "This branch is ${{ github.ref_name }}"
           echo "This is a ${{ env.APP_NAME }} version ${{ env.APP_VERSION}}"
-  # Job name
+          echo ${RUNNER_CONTEXT} # Job name
   hello-job:
     runs-on: ubuntu-latest
     steps:
