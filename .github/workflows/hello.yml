@@ -58,6 +58,7 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo "Hello Github Actions!"
+             echo "Event name by ${{ github.event_name }}"
       - name: Retreve client payload
         run: echo "Client send status ${{ github.event.client_payload.status }}"
   second-job:
