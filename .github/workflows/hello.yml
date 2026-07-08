@@ -43,6 +43,7 @@ jobs:
           APP_VERSION: "2.34.5"
           RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: 
+          echo "This is event ${ github.event_name }"
           echo "This job trigger by ${{ github.event_name }}"
           echo "This repository is ${{ github.repository }}"
           echo "This branch is ${{ github.ref_name }}"
@@ -52,7 +53,7 @@ jobs:
           echo "The Database password is ${{ secrets.DB_PASSWORD }}"
           
   hello-job:
-    if: $${{ github.event_name != 'on-demand-test' }}
+    if: $${{ github.event_type != 'repository_dispatch' }}
     runs-on: ubuntu-latest
     steps:
       - name: Run a one-line script
@@ -61,7 +62,7 @@ jobs:
         run: echo "Client send status ${{ github.event.client_payload.status }}"
   second-job:
     # If condition met it will be executed otherwise it skip
-    if: $${{ github.event_name != 'on-demand-test' }}
+    if: $${{ github.event_type != 'repository_dispatch' }}
     runs-on: windows-latest
     # Add synchro jobs (Means the second job will not executed unitil needs jobs are not done)
     # If not set all jobs will run asynchronous which means all jobs will run parallel with independent to each others
