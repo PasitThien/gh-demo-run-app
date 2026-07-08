@@ -19,3 +19,10 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo "Hello Github Actions!"
+  second-job:
+    runs-on: windows-latest
+    steps:
+      - name: Run a one-line script
+        run: echo "Runs jobs on environ ${{ runner.os }}"
+
+        
