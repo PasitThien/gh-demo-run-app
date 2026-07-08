@@ -1,6 +1,19 @@
+# Workflow name
 name: hello
-on: push
+# Event triggered can determined as array test1,test2
+on: 
+  push:
+    branches: [main]
+    # push: [a, b] 
+    # = 
+    # push: 
+    #   -a 
+    #   -b
+  pull_request:
+    branches: [main]
+# List jobs
 jobs:
+  # Job name
   hello-job:
     runs-on: ubuntu-latest
     steps:
