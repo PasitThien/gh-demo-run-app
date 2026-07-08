@@ -1,5 +1,11 @@
 # Workflow name
 name: Hello World
+
+# Determine custom environment variables for all jobs used with every jobs server runner
+# Github actions provided build-in env var but you can determine by your seld
+env:
+  PATH: /S/
+
 # Event triggered can determined as array test1,test2
 on: 
   push:
@@ -25,13 +31,19 @@ on:
 # List jobs
 jobs:
   echos-var:
+    env:
+      PACKAGE_PATH: '.'
     runs-on: ubuntu-latest
     steps:
       - name: Echo Github Variable
+        env:
+          APP_VERSION: "2.34.5"
+          # APP_NAME: "gh-demo-run-app"
         run: 
           echo "This job trigger by ${{ github.event_name }}"
           echo "This repository is ${{ github.repository }}"
           echo "This branch is ${{ github.ref_name }}"
+          echo "This is a ${{ env.APP_NAME }} version ${{ env.APP_VERSION}}"
   # Job name
   hello-job:
     runs-on: ubuntu-latest
