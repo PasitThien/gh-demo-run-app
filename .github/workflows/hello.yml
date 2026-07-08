@@ -2,6 +2,7 @@
 name: Hello World
 
 # ${{}} is used for express github action variables (context variables)
+# "$APP_VERSION" is ubuntu shell variable forma
 
 # Determine custom environment variables for all jobs used with every jobs server runner
 # Github actions provided build-in env var but you can determine by your seld
@@ -45,7 +46,7 @@ jobs:
           echo "This job trigger by ${{ github.event_name }}"
           echo "This repository is ${{ github.repository }}"
           echo "This branch is ${{ github.ref_name }}"
-          echo "This is a ${{ env.APP_NAME }} version ${{ env.APP_VERSION}}"
+          echo "This is a ${{ env.APP_NAME }} version ${{ env.APP_VERSION }}"
           echo "$APP_VERSION"
           echo "$RUNNER_CONTEXT"
           echo "The Database password is ${{ secrets.DB_PASSWORD }}"
