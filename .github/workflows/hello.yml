@@ -20,7 +20,7 @@ on:
   # External systems will have to send HTTP Request with event types to github
   # then github will listen with workflow_dispatch event
   repository_dispatch: 
-    types: ["on-demand-dispatch"]
+    types: ["on-demand-test"]
         
 # List jobs
 jobs:
