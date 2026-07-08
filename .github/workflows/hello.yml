@@ -19,7 +19,9 @@ on:
   # Determine external event listener
   # External systems will have to send HTTP Request with event types to github
   # then github will listen with workflow_dispatch event
-  workflow_dispatch:
+  repository_dispatch: 
+    types: ["on-demand-dispatch"]
+        
 # List jobs
 jobs:
   # Job name
