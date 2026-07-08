@@ -24,6 +24,13 @@ on:
         
 # List jobs
 jobs:
+  echos-var:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Github Variable
+        run: 
+          echo "This job trigger by ${{ github.event_name }}"
+          echo "test"
   # Job name
   hello-job:
     runs-on: ubuntu-latest
