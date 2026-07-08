@@ -53,12 +53,11 @@ jobs:
           echo "The Database password is ${{ secrets.DB_PASSWORD }}"
           
   hello-job:
-    if: ${{ github.event.event_type != 'on-demand-test' }}
+    if: ${{ github.event.client_payload.status != 'Completed' }}
     runs-on: ubuntu-latest
     steps:
       - name: Run a one-line script
         run: echo "Hello Github Actions!"
-             echo "Event name by ${{ github.event.event_type }}"
       - name: Retreve client payload
         run: echo "Client send status ${{ github.event.client_payload.status }}"
   second-job:
