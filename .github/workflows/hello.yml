@@ -30,6 +30,8 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo "Hello Github Actions!"
+      - name: Retreve client payload
+        run: echo "Client send status ${{ github.event.client_payload.status }}"
   second-job:
     runs-on: windows-latest
     # Add synchro jobs (Means the second job will not executed unitil needs jobs are not done)
