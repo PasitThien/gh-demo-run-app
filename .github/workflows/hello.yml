@@ -70,6 +70,6 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo "Runs jobs on environ ${{ runner.os }}"
-        if: $${{ runner.os == 'linux' }}
+        if: $${{ runner.os == 'Linux' }}
 
         
