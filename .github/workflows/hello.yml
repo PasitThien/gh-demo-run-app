@@ -1,14 +1,18 @@
 # Workflow name
-name: hello
+name: Hello World
 # Event triggered can determined as array test1,test2
 on: 
   push:
     branches: [main]
+    paths-ignore: ".github/workflows/*"
+    # paths: ".github/workflows/*"  included path for triggered workflows
     # push: [a, b] 
     # = 
     # push: 
     #   -a 
     #   -b
+
+  # When pull request has been requested to main branch
   pull_request:
     branches: [main]
 # List jobs
