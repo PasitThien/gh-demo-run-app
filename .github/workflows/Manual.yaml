@@ -18,6 +18,9 @@ on:
 jobs:
   builds:
     runs-on: ubuntu-latest
+    outputs:
+      # Can be referenced to 'GITHUB_OUTPUT' context
+      build_status: ${{ steps.set-status.outputs }}
     steps:
       - name: Checkout source code
         # Determine new external action
@@ -30,6 +33,12 @@ jobs:
       - name: List files in workspaces
         # List all file on default directory of repository
         run: ls ${{ github.workspace }}
+      - name: Set an output status
+        id: set-status
+        # Get output status and set to GITHUB_OUTPUT
+        run: |
+          echo "Get result from building proccess"
+          echo "status=success" >> $GITHUB_OUTPUT  
   test:
     runs-on: ubuntu-latest
     steps:
