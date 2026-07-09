@@ -1,13 +1,38 @@
 on: 
+  # Manually trigger flow event
   workflow_dispatch:
+    # Input argumeny to this workflow (For example there are two arguments: environment, run_ui_test)
+    inputs:
+      environment: 
+        description: 'Target Environment'
+        required: true
+        type: choice
+        options:
+          - "Staging"
+          - "Production"
+      run_ui_test:
+        description: 'Run UI Testing'
+        required: true
+        type: boolean
+        default: false
 jobs:
   builds:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
+        # Determine new external action
         uses: actions/checkout@v7.0.0
+        # Action's input argument determination
         with:
           repository: ${{ github.repository }}
+          # Branch to be checkout to
           ref: ${{ github.ref_name }}
       - name: List files in workspaces
+        # List all file on default directory of repository
         run: ls ${{ github.workspace }}
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: UI Testing
+        if: ${{ inputs.run_ui_test }}
+        run: echo "Run UI Testing tools in ${{ inputs.environment }} environment"
