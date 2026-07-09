@@ -18,8 +18,8 @@ on:
 jobs:
   builds:
     runs-on: ubuntu-latest
+    # Can be referenced to 'GITHUB_OUTPUT' context
     outputs:
-      # Can be referenced to 'GITHUB_OUTPUT' context
       build_status: ${{ steps.set-status.outputs }}
     steps:
       - name: Checkout source code
