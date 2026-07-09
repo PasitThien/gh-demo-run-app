@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     # Can be referenced to 'GITHUB_OUTPUT' context
     outputs:
-      build_status: ${{ steps.set-status.outputs }}
+      build_status: ${{ steps.set-status.outputs.status }}
     steps:
       - name: Checkout source code
         # Determine new external action
