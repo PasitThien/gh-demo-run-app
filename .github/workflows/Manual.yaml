@@ -40,8 +40,12 @@ jobs:
           echo "Get result from building proccess"
           echo "status=success" >> $GITHUB_OUTPUT  
   test:
+    needs: builds
     runs-on: ubuntu-latest
     steps:
       - name: UI Testing
         if: ${{ inputs.run_ui_test }}
-        run: echo "Run UI Testing tools in ${{ inputs.environment }} environment"
+        # Can get output from previous job with 'needs.<job_name>.outputs.<output_variable_name>' context variable
+        run: |
+          echo "The build status is ${{ needs.builds.outputs.build_status }}"
+          echo "Run UI Testing tools in ${{ inputs.environment }} environment"
